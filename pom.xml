@@ -6,7 +6,6 @@
 	<groupId>org.kontakte</groupId>
 	<artifactId>playService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 
 	<name>playService</name>
 	<description>Service in which to test new ideas</description>
