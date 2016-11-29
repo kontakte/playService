@@ -12,3 +12,4 @@ deployment:
       - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
       - git push git@heroku.com:kontakte-playground.git $CIRCLE_SHA1:refs/heads/master
       - newman run src/test/postman/PingService.postman_collection.json -e src/test/postman/kontakte-playground-heroku.postman_environment.json
+      - curl -v -H 'Authorization: token a768d220e4dcb5d31cc9a384ce267380a0b10a26' -H 'Content-Type: application/json' --data '{"tag_name": "Build_$CIRCLE_BUILD_NUM", "commitish": "$CIRCLE_SHA1", "prerelease": true}' https://api.github.com/repos/kontakte/playService/releases 
