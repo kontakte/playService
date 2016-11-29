@@ -15,4 +15,4 @@ deployment:
       - newman run src/test/postman/PingService.postman_collection.json -e src/test/postman/kontakte-playground-heroku.postman_environment.json
       - "echo \"{\\\"tag_name\\\": \\\"Build_$CIRCLE_BUILD_NUM\\\", \\\"commitish\\\": \\\"$CIRCLE_SHA1\\\", \\\"prerelease\\\": true}\" > $CIRCLE_ARTIFACTS/release.json"
       - "curl -f -H \"Authorization: token $GITHUB_KEY\" -H \"Content-Type: application/json\" https://api.github.com/repos/kontakte/playService/releases --data @$CIRCLE_ARTIFACTS/release.json -o response.json"
-      - "curl -f -H \"Authorization: token $GITHUB_KEY\" -H \"Content-Type: application/zip\" https://api.github.com/repos/kontakte/playService/releases/`jq .id response.json`/assets?name=$CIRCLE_PROJECT_NAME --data-binary @.*/target/playService.*jar"
+      - "curl -f -H \"Authorization: token $GITHUB_KEY\" -H \"Content-Type: application/zip\" https://api.github.com/repos/kontakte/playService/releases/`jq .id response.json`/assets?name=$CIRCLE_PROJECT_NAME --data-binary @`find . -type f -regex \".*target/playService.*jar\"`"
