@@ -3,7 +3,7 @@ node {
    def mvnHome
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
-      git credentialsId: 'rq_github', url: 'https://github.com/kontakte/playService.git'
+      git branch: env.BRANCH_NAME, credentialsId: 'rq_github', url: 'https://github.com/kontakte/playService.git'
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
